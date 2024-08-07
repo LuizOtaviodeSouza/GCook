@@ -1,0 +1,15 @@
+Configurar o GIT Local
+git config --global user.name Luiz O.
+git config --global user.email lui-otavio@hotmail.com
+
+Criar um projeto MVC com C#
+dotnet new mvc -o GCook
+dotnet new sln --name GCook
+dotnet sln add GCook\GCook.csproj
+
+Atualizar
+npm i
+
+Executar o projeto
+cd GCook
+dotnet watch run
