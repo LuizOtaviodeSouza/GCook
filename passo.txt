@@ -13,3 +13,9 @@ npm i
 Executar o projeto
 cd GCook
 dotnet watch run
+
+Criar migrações
+dotnet ef migrations add criar-banco
+
+Executar migração a alter o banco de dados
+dotnet ef database updade
