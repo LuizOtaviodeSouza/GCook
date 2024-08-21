@@ -10,7 +10,7 @@ namespace GCook.Data;
         {
 
         }     
-        public DbSet<Comentario> Categorias { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Comentario> Comentarios { get; set; }
         public DbSet<Ingrediente> Ingredientes { get; set; }
         public DbSet<Receita> Receitas { get; set; }
@@ -20,6 +20,7 @@ namespace GCook.Data;
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        AppDbSeed seed =new(builder);
 
         builder.Entity<ReceitaIngrediente>()
             .HasKey(ri => new { ri.ReceitaId, ri.IngredienteId});
