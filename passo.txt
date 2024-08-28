@@ -7,9 +7,6 @@ dotnet new mvc -o GCook
 dotnet new sln --name GCook
 dotnet sln add GCook\GCook.csproj
 
-Atualizar
-npm i
-
 Executar o projeto
 cd GCook
 dotnet watch run
