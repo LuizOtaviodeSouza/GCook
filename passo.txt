@@ -15,4 +15,4 @@ Criar migrações
 dotnet ef migrations add criar-banco
 
 Executar migração a alter o banco de dados
-dotnet ef database updade
+dotnet ef database update

@@ -7,7 +7,7 @@ namespace GCook.Models;
     public class Comentario
     {
         [Key]
-        public int ReceitaID { get; set; }
+        public int ReceitaId { get; set; }
 
         [ForeignKey("ReceitaId")]
         public Receita Receita { get; set; }

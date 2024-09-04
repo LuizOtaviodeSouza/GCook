@@ -40,7 +40,7 @@ public class HomeController : Controller
             .Include(r => r.Ingredientes)
             .ThenInclude(i => i.Ingrediente)
             .FirstOrDefault(r => r.Id == id);
-        return View();
+        return View(receita);
     }
 
     public IActionResult Privacy()
