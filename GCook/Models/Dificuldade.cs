@@ -1,7 +1,9 @@
-namespace GCook.Models;
+namespace GCook.Models
+{
     public enum Dificuldade
     {
-        Fácil,
-        Médio,
-        Difícil
+        Fácil = 1,
+        Médio = 2,
+        Difícil = 3
     }
+}

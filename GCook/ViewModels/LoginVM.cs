@@ -8,10 +8,10 @@ public class LoginVM
 
     public string EMail { get; set; }   
 
-    [DataType(DataType.Password)]
     [Display(Name = "Senha de Acesso", Prompt = "Senha de Acesso")]
     [Required(ErrorMessage = "Por favor, infome a senha de acesso")]
-
+    [DataType(DataType.Password)]
+    
     public string Senha { get; set; }
 
     [Display(Name = "Manter Conectado?")]
@@ -19,5 +19,4 @@ public class LoginVM
     public bool Lembrar { get; set; } = false;
 
     public string UrlRetorno { get; set; }   
-    
  }
