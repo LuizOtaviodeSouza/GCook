@@ -17,7 +17,7 @@ namespace GCook.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
@@ -121,11 +121,17 @@ namespace GCook.Migrations
 
             modelBuilder.Entity("GCook.Models.Comentario", b =>
                 {
-                    b.Property<int>("ReceitaId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DataComentario")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ReceitaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("TextoComentario")
                         .HasMaxLength(300)
@@ -135,7 +141,9 @@ namespace GCook.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("ReceitaId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceitaId");
 
                     b.HasIndex("UsuarioId");
 
@@ -283,7 +291,7 @@ namespace GCook.Migrations
                             Id = 1,
                             CategoriaId = 4,
                             Descricao = "Prato perfeito para um lanche rápido ou mesmo uma refeição picante. Carne moída, pimentões, temperos e muito queijooooo",
-                            Dificuldade = 0,
+                            Dificuldade = 1,
                             Foto = "/img/receitas/1.jpg",
                             Nome = "Carne Moída Mexicana",
                             Preparo = "Comece pela preparação dos ingredientes, pique os pimentões e a cebola em pequenos cubos, se preferir você também pode usar um processador de alimentos.Coloque a carne moída para fritar em uma panela com um pouco de azeite.Quando a carne moída já não estiver mais crua, adicione os pimentões e a cebola, mexendo bem para misturar todos os ingredientes.Aguarde alguns instante e adicione os temperos, mexendo novamente para misturar.Frite por mais alguns minutos a carne com os demais ingredientes.Adicione o Cream Cheese e o Queijo Cheddar, mexendo bem para evitar que queime o fundo e ajudar os queijos a derreterem.Quando os queijos já estiverem bem derretidos e misturados com os demais ingredientes, sirva acompanhado do Pão Sirio ou de Doritos.",
@@ -301,6 +309,10 @@ namespace GCook.Migrations
                     b.Property<int>("IngredienteId")
                         .HasColumnType("int")
                         .HasColumnOrder(2);
+
+                    b.Property<string>("Preparo")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Quantidade")
                         .IsRequired()
@@ -419,7 +431,7 @@ namespace GCook.Migrations
                         new
                         {
                             UsuarioId = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
-                            DataNascimento = new DateTime(1981, 8, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataNascimento = new DateTime(1981, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Foto = "/img/usuarios/avatar.png",
                             Nome = "José Antonio Gallo Junior"
                         });
@@ -564,15 +576,15 @@ namespace GCook.Migrations
                         {
                             Id = "ddf093a6-6cb5-4ff7-9a64-83da34aee005",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0c1d1911-9fe9-4d2d-b859-44a5d4ac64b1",
+                            ConcurrencyStamp = "7aaf247d-0a55-4192-8028-e4a1dde73b3c",
                             Email = "admin@gcook.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GCOOK.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEK4tfeuDVao60c4A6+nx9BZ0+htluBooCZ6vsZDndzyRVxEFtRXIRGizGYxh4tkMlg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFcpZthWGAi6KHOu+/7yRjmTt/hl6Hxlchmhde3XPbCdjm1KWBt7Fv+poarsR0kGyw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f6188f5c-a340-4ff5-9a22-cbcb1bdbb9e7",
+                            SecurityStamp = "e8331602-5b3b-4358-a851-5c63bad146dd",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GCook.Migrations
 {
     /// <inheritdoc />
-    public partial class criarbanco : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -291,6 +291,8 @@ namespace GCook.Migrations
                 name: "Comentario",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ReceitaId = table.Column<int>(type: "int", nullable: false),
                     UsuarioId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -300,7 +302,7 @@ namespace GCook.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comentario", x => x.ReceitaId);
+                    table.PrimaryKey("PK_Comentario", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Comentario_Receita_ReceitaId",
                         column: x => x.ReceitaId,
@@ -323,6 +325,8 @@ namespace GCook.Migrations
                     ReceitaId = table.Column<int>(type: "int", nullable: false),
                     IngredienteId = table.Column<int>(type: "int", nullable: false),
                     Quantidade = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Preparo = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -356,7 +360,7 @@ namespace GCook.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "ddf093a6-6cb5-4ff7-9a64-83da34aee005", 0, "0c1d1911-9fe9-4d2d-b859-44a5d4ac64b1", "admin@gcook.com", true, false, null, "ADMIN@GCOOK.COM", "ADMIN", "AQAAAAIAAYagAAAAEK4tfeuDVao60c4A6+nx9BZ0+htluBooCZ6vsZDndzyRVxEFtRXIRGizGYxh4tkMlg==", null, false, "f6188f5c-a340-4ff5-9a22-cbcb1bdbb9e7", false, "Admin" });
+                values: new object[] { "ddf093a6-6cb5-4ff7-9a64-83da34aee005", 0, "7aaf247d-0a55-4192-8028-e4a1dde73b3c", "admin@gcook.com", true, false, null, "ADMIN@GCOOK.COM", "ADMIN", "AQAAAAIAAYagAAAAEFcpZthWGAi6KHOu+/7yRjmTt/hl6Hxlchmhde3XPbCdjm1KWBt7Fv+poarsR0kGyw==", null, false, "e8331602-5b3b-4358-a851-5c63bad146dd", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Categoria",
@@ -409,31 +413,31 @@ namespace GCook.Migrations
             migrationBuilder.InsertData(
                 table: "Receita",
                 columns: new[] { "Id", "CategoriaId", "Descricao", "Dificuldade", "Foto", "Nome", "Preparo", "Rendimento", "TempoPreparo" },
-                values: new object[] { 1, 4, "Prato perfeito para um lanche rápido ou mesmo uma refeição picante. Carne moída, pimentões, temperos e muito queijooooo", 0, "/img/receitas/1.jpg", "Carne Moída Mexicana", "Comece pela preparação dos ingredientes, pique os pimentões e a cebola em pequenos cubos, se preferir você também pode usar um processador de alimentos.Coloque a carne moída para fritar em uma panela com um pouco de azeite.Quando a carne moída já não estiver mais crua, adicione os pimentões e a cebola, mexendo bem para misturar todos os ingredientes.Aguarde alguns instante e adicione os temperos, mexendo novamente para misturar.Frite por mais alguns minutos a carne com os demais ingredientes.Adicione o Cream Cheese e o Queijo Cheddar, mexendo bem para evitar que queime o fundo e ajudar os queijos a derreterem.Quando os queijos já estiverem bem derretidos e misturados com os demais ingredientes, sirva acompanhado do Pão Sirio ou de Doritos.", 3, "20 minutos" });
+                values: new object[] { 1, 4, "Prato perfeito para um lanche rápido ou mesmo uma refeição picante. Carne moída, pimentões, temperos e muito queijooooo", 1, "/img/receitas/1.jpg", "Carne Moída Mexicana", "Comece pela preparação dos ingredientes, pique os pimentões e a cebola em pequenos cubos, se preferir você também pode usar um processador de alimentos.Coloque a carne moída para fritar em uma panela com um pouco de azeite.Quando a carne moída já não estiver mais crua, adicione os pimentões e a cebola, mexendo bem para misturar todos os ingredientes.Aguarde alguns instante e adicione os temperos, mexendo novamente para misturar.Frite por mais alguns minutos a carne com os demais ingredientes.Adicione o Cream Cheese e o Queijo Cheddar, mexendo bem para evitar que queime o fundo e ajudar os queijos a derreterem.Quando os queijos já estiverem bem derretidos e misturados com os demais ingredientes, sirva acompanhado do Pão Sirio ou de Doritos.", 3, "20 minutos" });
 
             migrationBuilder.InsertData(
                 table: "Usuario",
                 columns: new[] { "UsuarioId", "DataNascimento", "Foto", "Nome" },
-                values: new object[] { "ddf093a6-6cb5-4ff7-9a64-83da34aee005", new DateTime(1981, 8, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "/img/usuarios/avatar.png", "José Antonio Gallo Junior" });
+                values: new object[] { "ddf093a6-6cb5-4ff7-9a64-83da34aee005", new DateTime(1981, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "/img/usuarios/avatar.png", "José Antonio Gallo Junior" });
 
             migrationBuilder.InsertData(
                 table: "ReceitaIngrediente",
-                columns: new[] { "IngredienteId", "ReceitaId", "Quantidade" },
+                columns: new[] { "IngredienteId", "ReceitaId", "Preparo", "Quantidade" },
                 values: new object[,]
                 {
-                    { 1, 1, "500g" },
-                    { 3, 1, "1 pequeno" },
-                    { 4, 1, "1 pequeno" },
-                    { 5, 1, "1 pequeno" },
-                    { 6, 1, "1 colher sopa" },
-                    { 7, 1, "1 colher sopa" },
-                    { 8, 1, "1 colher sopa" },
-                    { 9, 1, "1 colher sopa" },
-                    { 10, 1, "1 colher sopa" },
-                    { 11, 1, "A vontade" },
-                    { 12, 1, "200g" },
-                    { 13, 1, "200g" },
-                    { 14, 1, "Um pouco" }
+                    { 1, 1, null, "500g" },
+                    { 3, 1, null, "1 pequeno" },
+                    { 4, 1, null, "1 pequeno" },
+                    { 5, 1, null, "1 pequeno" },
+                    { 6, 1, null, "1 colher sopa" },
+                    { 7, 1, null, "1 colher sopa" },
+                    { 8, 1, null, "1 colher sopa" },
+                    { 9, 1, null, "1 colher sopa" },
+                    { 10, 1, null, "1 colher sopa" },
+                    { 11, 1, null, "A vontade" },
+                    { 12, 1, null, "200g" },
+                    { 13, 1, null, "200g" },
+                    { 14, 1, null, "Um pouco" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -472,6 +476,11 @@ namespace GCook.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comentario_ReceitaId",
+                table: "Comentario",
+                column: "ReceitaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comentario_UsuarioId",
