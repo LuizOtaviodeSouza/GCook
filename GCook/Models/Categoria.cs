@@ -13,6 +13,11 @@ public class Categoria
     [StringLength(30)]
     public string Nome { get; set; }
 
+    [Required(ErrorMessage = "Por favor, inforeme o nome")]
+    [StringLength(30)]
+
+    public string Nome { get; set; }
+    
     [StringLength(300)]
     public string Foto { get; set; }
 
