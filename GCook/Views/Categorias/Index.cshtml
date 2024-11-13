@@ -7,7 +7,7 @@
 <h1>Categorias</h1>
 <h4>Listagem</h4>
 <p class="my-3">
-    <a class="btn btn-primary" asp-action="Categorias">
+    <a class="btn btn-primary" asp-action="Create">
         <i class="bi bi-plus-circle me-2"></i>
         Adicionar
     </a>
@@ -26,26 +26,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExibirHome)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="me-2 text-decoration-none">
-                    <i class="bi bi-pencil text-warning me-2" title="Alterar"></i>
-                </a> 
-                <a asp-action="Details" asp-route-id="@item.Id" class="me-2 text-decoration-none">
-                    <i class="bi bi-search text-info me-2" title="Ver Detalhes"></i>
-                </a> 
-                <a asp-action="Delete" asp-route-id="@item.Id" class="me-2 text-decoration-none">
-                    <i class="bi bi-trash text-danger" title="Excluir"></i>
-                </a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExibirHome)
+                </td>
+                <td>
+                    <a class="text-decoration-none" asp-action="Edit" asp-route-id="@item.Id">
+                        <i class="bi bi-pencil text-warning me-2" title="Alterar"></i>
+                    </a>
+                    <a class="text-decoration-none" asp-action="Details" asp-route-id="@item.Id">
+                        <i class="bi bi-search text-info me-2" title="Ver Detalhes"></i>
+                    </a>
+                    <a class="text-decoration-none" asp-action="Delete" asp-route-id="@item.Id">
+                        <i class="bi bi-trash text-danger" title="Excluir"></i>
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

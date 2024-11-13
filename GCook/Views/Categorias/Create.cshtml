@@ -1,40 +1,51 @@
 @model GCook.Models.Categoria
-
 @{
-    ViewData["Titulo"] = "Criar";
+    ViewData["Title"] = "Categorias";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Criar</h1>
-
-<h4>Categoria</h4>
+<h1>Categoria</h1>
+<h4>Incluir</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="mb-3 form-group">
+            <div class="mb-3">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="mb-3 form-group">
-                <label asp-for="Foto" class="control-label"></label>
-                <input type="file" name="Foto" class="form-control" accept=".jpg,.jpeg,.png,.gif" />
-            </div>
-            <div class="mb-3">
+            <div class="mb-3 form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="ExibirHome" /> @Html.DisplayNameFor(model => model.ExibirHome)
                 </label>
             </div>
             <div class="mb-3">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <label asp-for="Foto" class="control-label"></label>
+                <img id="Preview">
+                <input type="file" name="Foto" class="form-control" accept=".jpg,.jpeg,.png,.gif" />
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Salvar" class="btn btn-lg btn-success" />
                 <a asp-action="Index" class="ms-2 btn btn-danger">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
 
+
 @section Scripts {
-    <partial name="_ValidationScripts"></partial>
+    <partial name="_ValidationScriptsPartial"></partial>
+        <script>
+        window.addEventListener('load', function() {
+            document.querySelector('input[type=file]')
+            .addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    var img = document.getElementById('Preview');
+                    img.src = URL.createObjectURL(this.files[0]);
+                }
+            });
+        });
+    </script>
 }
